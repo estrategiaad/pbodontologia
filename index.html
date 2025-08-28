@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF--8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PB Odontologia Estética</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light background (slate-50) */
+            color: #1e293b; /* Dark text color (slate-800) */
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hero-bg-motion {
+            background: linear-gradient(-45deg, #818cf8, #a78bfa, #fb7185, #67e8f9);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Testimonial Slider Styles */
+        .slider-container {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        .slider-container::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+        .slider-item {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+        }
+        @media (min-width: 768px) {
+            .slider-item {
+                flex: 0 0 50%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .slider-item {
+                flex: 0 0 25%;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 0. Navigation Bar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-extrabold text-slate-800">PB Odontologia Estética</a>
+                </div>
+                <div class="hidden md:flex md:items-center md:justify-center md:flex-1">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="text-slate-600 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">Sobre Nós</a>
+                        <a href="#features" class="text-slate-600 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">Serviços</a>
+                        <a href="#testimonials" class="text-slate-600 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">Depoimentos</a>
+                        <a href="#faq" class="text-slate-600 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">FAQ</a>
+                        <a href="#instalacoes" class="text-slate-600 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">Nossas Instalações</a>
+                        <a href="#resultados" class="text-slate-600 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">Resultados</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-2xl shadow-lg mt-2">
+                <a href="#about" class="text-slate-600 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Sobre Nós</a>
+                <a href="#features" class="text-slate-600 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Serviços</a>
+                <a href="#testimonials" class="text-slate-600 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Depoimentos</a>
+                <a href="#faq" class="text-slate-600 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">FAQ</a>
+                <a href="#instalacoes" class="text-slate-600 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Nossas Instalações</a>
+                <a href="#resultados" class="text-slate-600 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Resultados</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-28 overflow-hidden">
+             <div class="absolute inset-0 hero-bg-motion"></div>
+            <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left fade-in">
+                        <p class="text-lg font-bold text-white mb-4">25 anos de experiência</p>
+                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                            Os melhores tratamentos para um belo sorriso e um belo rosto
+                        </h1>
+                        <p class="text-lg text-indigo-100 mb-10 max-w-xl mx-auto lg:mx-0">
+                           Transformando sorrisos e realçando a beleza facial com tecnologia de ponta e cuidado especializado.
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                            <a href="https://wa.me/5561995572348" target="_blank" class="cta-button bg-white hover:bg-slate-100 text-indigo-600 font-bold py-4 px-8 rounded-full text-lg">Agende sua avaliação</a>
+                            <a href="#features" class="cta-button bg-white/30 hover:bg-white/50 text-white font-bold py-4 px-8 rounded-full text-lg">Saiba Mais</a>
+                        </div>
+                        <p class="mt-8 text-white font-semibold">1000+ sorrisos satisfeitos</p>
+                    </div>
+                    <div class="fade-in flex flex-col gap-8" style="transition-delay: 200ms;">
+                        <img src="hero1.jpg" alt="Mulher com um sorriso radiante" class="w-full aspect-video object-cover rounded-3xl shadow-2xl" onerror="this.onerror=null;this.src='https://placehold.co/600x338/FFFFFF/4F46E5?text=Imagem+1';">
+                        <img src="hero2.jpg" alt="Detalhe de um sorriso perfeito" class="w-full aspect-video object-cover rounded-3xl shadow-2xl" onerror="this.onerror=null;this.src='https://placehold.co/600x338/FFFFFF/4F46E5?text=Imagem+2';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Credibility Logos -->
+        <section class="py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-center items-center">
+                     <p class="text-slate-500 text-sm mr-4 font-semibold">Parceiro de confiança:</p>
+                    <img src="https://placehold.co/200x50/E2E8F0/475569?text=Estratégia+Agência+Digital" alt="Logo Estratégia Agência Digital" class="h-8 rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/200x50/E2E8F0/475569?text=Logo';">
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Features Section -->
+        <section id="features" class="py-20 sm:py-28">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900">Nosso Processo de Cuidado</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">Seguimos um caminho claro para garantir os melhores resultados para você.</p>
+                </div>
+                <div class="space-y-8">
+                    <!-- Main Card -->
+                    <div class="fade-in p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300">
+                        <div class="flex flex-col md:flex-row items-center gap-8">
+                            <div class="flex-shrink-0">
+                                <img src="https://placehold.co/150x150/C7D2FE/312E81?text=Diagnóstico" class="rounded-2xl w-32 h-32 md:w-40 md:h-40 object-cover" alt="Diagnóstico inicial" onerror="this.onerror=null;this.src='https://placehold.co/150x150/C7D2FE/312E81?text=Imagem';">
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-indigo-600 mb-2">1. Diagnóstico Inicial</h3>
+                                <p class="text-slate-600">Tudo começa com uma avaliação completa. Utilizamos tecnologia de ponta para entender suas necessidades e objetivos, garantindo um diagnóstico preciso e detalhado.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="fade-in p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300" style="transition-delay: 100ms;">
+                            <h3 class="text-xl font-bold text-indigo-600 mb-2">2. Plano Customizado</h3>
+                            <p class="text-slate-600">Com base no diagnóstico, criamos um plano de tratamento totalmente personalizado, alinhado com suas expectativas e saúde.</p>
+                        </div>
+                        <div class="fade-in p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300" style="transition-delay: 200ms;">
+                            <h3 class="text-xl font-bold text-indigo-600 mb-2">3. Sessões de Tratamento</h3>
+                            <p class="text-slate-600">Nossos especialistas realizam os procedimentos com precisão e cuidado, em um ambiente seguro e confortável.</p>
+                        </div>
+                        <div class="fade-in p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300" style="transition-delay: 300ms;">
+                            <h3 class="text-xl font-bold text-indigo-600 mb-2">4. Acompanhamento</h3>
+                            <p class="text-slate-600">Após o tratamento, continuamos ao seu lado, garantindo que os resultados sejam duradouros e sua satisfação seja completa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. "Why Choose" Section -->
+        <section id="about" class="py-20 sm:py-28 bg-slate-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                 <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900">Por que nos escolher?</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">Nossa dedicação é a sua confiança e o seu melhor sorriso.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="fade-in text-center p-6 bg-white rounded-3xl shadow-lg">
+                        <h3 class="text-xl font-bold text-indigo-600 mb-2">Profissionais Especializados</h3>
+                        <p class="text-slate-600">Nossa equipe é formada por dentistas altamente qualificados e em constante atualização.</p>
+                    </div>
+                    <div class="fade-in text-center p-6 bg-white rounded-3xl shadow-lg" style="transition-delay: 100ms;">
+                        <h3 class="text-xl font-bold text-indigo-600 mb-2">25 Anos de Experiência</h3>
+                        <p class="text-slate-600">Uma longa trajetória de sucesso e milhares de pacientes satisfeitos.</p>
+                    </div>
+                    <div class="fade-in text-center p-6 bg-white rounded-3xl shadow-lg" style="transition-delay: 200ms;">
+                        <h3 class="text-xl font-bold text-indigo-600 mb-2">Ambiente Acolhedor</h3>
+                        <p class="text-slate-600">Criamos um espaço onde você se sente confortável e seguro do início ao fim.</p>
+                    </div>
+                    <div class="fade-in text-center p-6 bg-white rounded-3xl shadow-lg" style="transition-delay: 300ms;">
+                        <h3 class="text-xl font-bold text-indigo-600 mb-2">Segurança e Esterilização</h3>
+                        <p class="text-slate-600">Seguimos rigorosos protocolos de biossegurança para proteger sua saúde.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Testimonials Section -->
+        <section id="testimonials" class="py-20 sm:py-28">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900">O que nossos pacientes dizem</h2>
+                    <p class="mt-4 text-lg text-slate-600">A satisfação de quem confia em nosso trabalho.</p>
+                </div>
+                <div class="slider-container flex gap-8 pb-8">
+                    <!-- Testimonial 1 -->
+                    <div class="slider-item fade-in p-8 rounded-3xl bg-white shadow-xl flex-shrink-0">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/50x50/FBCFE8/9D174D?text=TP" class="w-12 h-12 rounded-full mr-4" alt="Avatar Taysa Pereira" onerror="this.onerror=null;this.src='https://placehold.co/50x50/FBCFE8/9D174D?text=A';">
+                            <div>
+                                <p class="font-bold text-slate-800">Taysa Pereira</p>
+                                <div class="flex text-yellow-400">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-slate-600">"Melhores profissionais. Local limpo, bem aconchegante. Adorei o resultado da minha harmonização"</p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="slider-item fade-in p-8 rounded-3xl bg-white shadow-xl flex-shrink-0">
+                         <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/50x50/FBCFE8/9D174D?text=TC" class="w-12 h-12 rounded-full mr-4" alt="Avatar Tathiana Costa" onerror="this.onerror=null;this.src='https://placehold.co/50x50/FBCFE8/9D174D?text=A';">
+                            <div>
+                                <p class="font-bold text-slate-800">Tathiana Costa</p>
+                                <div class="flex text-yellow-400">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-slate-600">"Excelentes profissionais, estou satisfeita com o procedimento de botox que realizei."</p>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="slider-item fade-in p-8 rounded-3xl bg-white shadow-xl flex-shrink-0">
+                         <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/50x50/FBCFE8/9D174D?text=VM" class="w-12 h-12 rounded-full mr-4" alt="Avatar Vanessa Martins" onerror="this.onerror=null;this.src='https://placehold.co/50x50/FBCFE8/9D174D?text=A';">
+                            <div>
+                                <p class="font-bold text-slate-800">Vanessa Martins</p>
+                                <div class="flex text-yellow-400">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-slate-600">"Atendimento excelente! Eu e minha família já tivemos experiência em harmonização facial, ortodontia, odontopediatria e clínica geral."</p>
+                    </div>
+                    <!-- Testimonial 4 -->
+                    <div class="slider-item fade-in p-8 rounded-3xl bg-white shadow-xl flex-shrink-0">
+                         <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/50x50/FBCFE8/9D174D?text=RB" class="w-12 h-12 rounded-full mr-4" alt="Avatar Raffaella Brayner" onerror="this.onerror=null;this.src='https://placehold.co/50x50/FBCFE8/9D174D?text=A';">
+                            <div>
+                                <p class="font-bold text-slate-800">Raffaella Brayner</p>
+                                <div class="flex text-yellow-400">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-slate-600">"Atendimento maravilhoso!!! Dra Priscila super cuidadosa, mão leve e atendimento mil."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FAQ Section -->
+        <section id="faq" class="py-20 sm:py-28 bg-slate-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900">Perguntas Frequentes</h2>
+                    <p class="mt-4 text-lg text-slate-600">Tire suas dúvidas sobre nossos tratamentos.</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-4 fade-in">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item bg-white p-2 rounded-2xl shadow-md">
+                        <button class="faq-question w-full text-left flex justify-between items-center p-4">
+                            <span class="text-lg font-semibold text-slate-800">Quais são os tratamentos oferecidos pela clínica?</span>
+                            <svg class="w-6 h-6 text-indigo-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="p-4 pt-0 text-slate-600">Nossa clínica oferece uma variedade de tratamentos, incluindo procedimentos odontológicos como limpeza, restaurações, implantes, Endodontia, ortodontia, e também procedimentos estéticos como botox, preenchimento facial, harmonização facial, peelings, laserterapia, Fios de PDO, bioestimuladores, entre outros.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item bg-white p-2 rounded-2xl shadow-md">
+                        <button class="faq-question w-full text-left flex justify-between items-center p-4">
+                            <span class="text-lg font-semibold text-slate-800">Como funciona o tratamento de Ortodontia?</span>
+                             <svg class="w-6 h-6 text-indigo-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="p-4 pt-0 text-slate-600">O tratamento de Ortodontia na nossa clínica visa corrigir problemas de má oclusão e alinhar os dentes utilizando aparelhos fixos ou móveis, de acordo com as necessidades de cada paciente. Trabalhamos com alinhadores ortodônticos transparentes, sem a necessidade de aparelho de metal.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item bg-white p-2 rounded-2xl shadow-md">
+                        <button class="faq-question w-full text-left flex justify-between items-center p-4">
+                            <span class="text-lg font-semibold text-slate-800">Quais os benefícios da Harmonização Facial?</span>
+                            <svg class="w-6 h-6 text-indigo-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="p-4 pt-0 text-slate-600">A Harmonização Facial promove o equilíbrio estético do rosto, suavizando rugas, realçando contornos e melhorando a harmonia facial. Na nossa clínica, esse procedimento é realizado de forma individualizada, através de aplicação de ácido hialurônico, botox e outros protocolos visando reposicionar tecidos faciais que perderam a elasticidade devido à ação do tempo.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 4 -->
+                     <div class="faq-item bg-white p-2 rounded-2xl shadow-md">
+                        <button class="faq-question w-full text-left flex justify-between items-center p-4">
+                            <span class="text-lg font-semibold text-slate-800">O que é Endodontia (tratamento de canal)?</span>
+                            <svg class="w-6 h-6 text-indigo-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="p-4 pt-0 text-slate-600">Endodontia é o ramo da odontologia que trata das lesões e doenças da polpa dentária. Esse tratamento é indicado em casos de cáries profundas, traumatismos dentários ou infecções que afetam a polpa do dente, o famoso tratamento de Canal.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 5 -->
+                     <div class="faq-item bg-white p-2 rounded-2xl shadow-md">
+                        <button class="faq-question w-full text-left flex justify-between items-center p-4">
+                            <span class="text-lg font-semibold text-slate-800">Quais são os procedimentos de Botox disponíveis?</span>
+                            <svg class="w-6 h-6 text-indigo-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="p-4 pt-0 text-slate-600">Oferecemos procedimentos com Toxina Botulínica para suavizar rugas faciais, como as linhas da testa, rugas entre as sobrancelhas (glabela), e ao redor dos olhos (pés de galinha), também temos tratamentos para algumas disfunções como por exemplo paralisia facial, assimetrias etc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Facilities Gallery Section -->
+        <section id="instalacoes" class="py-20 sm:py-28">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900">Nossas Instalações</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">Um ambiente moderno e acolhedor, pensado para o seu conforto.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="fade-in">
+                        <img src="insta1.jpg" alt="Recepção da clínica" class="rounded-3xl shadow-xl w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C7D2FE/312E81?text=Recepção';">
+                    </div>
+                    <div class="fade-in" style="transition-delay: 100ms;">
+                        <img src="insta2.jpg" alt="Consultório moderno" class="rounded-3xl shadow-xl w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C7D2FE/312E81?text=Consultório+1';">
+                    </div>
+                    <div class="fade-in" style="transition-delay: 200ms;">
+                        <img src="insta3.jpg" alt="Equipamento de ponta" class="rounded-3xl shadow-xl w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C7D2FE/312E81?text=Equipamento';">
+                    </div>
+                     <div class="fade-in" style="transition-delay: 300ms;">
+                        <img src="insta4.jpg" alt="Sala de espera confortável" class="rounded-3xl shadow-xl w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C7D2FE/312E81?text=Sala+de+Espera';">
+                    </div>
+                     <div class="fade-in" style="transition-delay: 400ms;">
+                        <img src="insta5.jpg" alt="Outro ângulo do consultório" class="rounded-3xl shadow-xl w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C7D2FE/312E81?text=Consultório+2';">
+                    </div>
+                     <div class="fade-in" style="transition-delay: 500ms;">
+                        <img src="insta6.jpg" alt="Detalhes da decoração" class="rounded-3xl shadow-xl w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/C7D2FE/312E81?text=Detalhes';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Results Gallery Section -->
+        <section id="resultados" class="py-20 sm:py-28 bg-slate-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900">Resultados que Inspiram</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">Veja a transformação no sorriso dos nossos clientes.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="fade-in space-y-4">
+                        <img src="antes1.jpg" alt="Resultado antes 1" class="rounded-3xl shadow-xl w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFFFFF/4F46E5?text=Antes';">
+                        <img src="depois1.jpg" alt="Resultado depois 1" class="rounded-3xl shadow-xl w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFFFFF/4F46E5?text=Depois';">
+                    </div>
+                     <div class="fade-in space-y-4" style="transition-delay: 100ms;">
+                        <img src="antes2.jpg" alt="Resultado antes 2" class="rounded-3xl shadow-xl w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFFFFF/4F46E5?text=Antes';">
+                        <img src="depois2.jpg" alt="Resultado depois 2" class="rounded-3xl shadow-xl w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFFFFF/4F46E5?text=Depois';">
+                    </div>
+                     <div class="fade-in space-y-4" style="transition-delay: 200ms;">
+                        <img src="antes3.jpg" alt="Resultado antes 3" class="rounded-3xl shadow-xl w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFFFFF/4F46E5?text=Antes';">
+                        <img src="depois3.jpg" alt="Resultado depois 3" class="rounded-3xl shadow-xl w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFFFFF/4F46E5?text=Depois';">
+                    </div>
+                     <div class="fade-in space-y-4" style="transition-delay: 300ms;">
+                        <img src="antes4.jpg" alt="Resultado antes 4" class="rounded-3xl shadow-xl w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFFFFF/4F46E5?text=Antes';">
+                        <img src="depois4.jpg" alt="Resultado depois 4" class="rounded-3xl shadow-xl w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFFFFF/4F46E5?text=Depois';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Final CTA -->
+        <section id="final-cta" class="py-20 sm:py-28">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="hero-bg-motion rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div class="text-center lg:text-left fade-in">
+                            <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-6">Agende uma avaliação agora mesmo!</h2>
+                            <p class="text-indigo-100 text-lg mb-8">Dê o primeiro passo para o sorriso que você sempre sonhou. Nossa equipe está pronta para recebê-lo.</p>
+                            <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                                <a href="https://wa.me/5561995572348" target="_blank" class="cta-button bg-white hover:bg-slate-100 text-indigo-600 font-bold py-4 px-8 rounded-full text-lg">Agendar pelo WhatsApp</a>
+                                <a href="https://wa.me/5561995572348" target="_blank" class="cta-button bg-white/30 hover:bg-white/50 text-white font-bold py-4 px-8 rounded-full text-lg">Ligar Agora</a>
+                            </div>
+                        </div>
+                        <div class="fade-in" style="transition-delay: 200ms;">
+                             <img src="https://placehold.co/500x400/FFFFFF/4F46E5?text=Agendamento+Fácil" alt="Mockup de agendamento no celular" class="rounded-2xl mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/500x400/FFFFFF/4F46E5?text=Imagem';">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 8. Footer -->
+    <footer class="bg-slate-100">
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-slate-500">
+            <div class="flex flex-col sm:flex-row items-center justify-between">
+                <div class="text-center sm:text-left">
+                    <p class="mb-2">&copy; 2025 PB Odontologia Estética. Todos os direitos reservados.</p>
+                    <div class="flex justify-center sm:justify-start space-x-6">
+                        <a href="https://www.instagram.com/dra.priscilamechi/" target="_blank" class="hover:text-slate-800">Instagram Dra. Priscila</a>
+                        <a href="https://www.instagram.com/dra.biancavicco/" target="_blank" class="hover:text-slate-800">Instagram Dra. Bianca</a>
+                        <a href="https://www.google.com/search?q=Dra.+Bianca+Vicco+e+Dra.+Priscila+Mechi+/+Odontologia+e+Est%C3%A9tica+Facial+em+%C3%81guas+Claras&stick=H4sIAAAAAAAA_x3LPQrCQBCG4UrxGINgq2uGuGjpXydaCZZfJmMcWLOQjZDWq9h5jlzMYPvyvJPxdOa6NefgzGcKVsnLYuO6e6bqCq_MvPK8xGd02zeY09ZQC-hqIpGU_u3SWBILoJPKw2hB5zLWbQyxMgzmkNr-29pwHSGGQPqk_l29kGgX0CD9AFpFr1yFAAAA&hl=pt-BR&mat=CWWJYz3OeagQElcBYJahaRbcMmxcobuVXAP-VBjpee6pllpsiL9CnCwym5JwxZf1cIxdsv_Zpw-3KuOJyNijnj9M3TrUFBsrlghTHaC1sUvq2_zbfj7IemzhoLmLhqiu9UA&authuser=0#scso=_9OyvaIahFY7E5OUPmoyGyQY_77:1339" target="_blank" class="hover:text-slate-800">Google Meu Negócio</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 mt-4 sm:mt-0">
+                    <span class="text-sm">Site desenvolvido por</span>
+                    <a href="https://wa.me/5561991390058" target="_blank">
+                        <img src="logoead.jpg" alt="Logo da agência de desenvolvimento" class="h-8" onerror="this.onerror=null;this.src='https://placehold.co/100x32/E2E8F0/475569?text=Logo';">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.querySelector('svg:first-child').classList.toggle('hidden');
+            mobileMenuButton.querySelector('svg:last-child').classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/80', 'shadow-md', 'backdrop-blur-lg');
+            } else {
+                navbar.classList.remove('bg-white/80', 'shadow-md', 'backdrop-blur-lg');
+            }
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const icon = question.querySelector('svg');
+
+            question.addEventListener('click', () => {
+                const isOpen = answer.classList.contains('open');
+
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                    otherItem.querySelector('.faq-answer').classList.remove('open');
+                    otherItem.querySelector('.faq-question svg').classList.remove('rotate-180');
+                });
+
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+
+        // Fade-in on scroll
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+</body>
+</html>
